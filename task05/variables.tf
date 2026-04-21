@@ -22,7 +22,7 @@ variable "app_service_plans" {
 
 variable "os_type" {
   description = "The operating system type for the App Service Plan (e.g., 'Windows' or 'Linux')."
-  type = string
+  type        = string
 }
 
 variable "ip_restrictions" {
