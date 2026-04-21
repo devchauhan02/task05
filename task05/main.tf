@@ -15,7 +15,7 @@ module "app_service_plan" {
   location            = module.resource_group[each.value.resource_group_key].location
   resource_group_name = module.resource_group[each.value.resource_group_key].name
   sku_name            = each.value.sku_name
-  os_type             = each.value.os_type
+  os_type             = var.os_type
   worker_count        = each.value.worker_count
   tags                = var.tags
 }
