@@ -15,6 +15,7 @@ module "app_service_plan" {
   location            = module.resource_group[each.value.resource_group_key].location
   resource_group_name = module.resource_group[each.value.resource_group_key].name
   sku_name            = each.value.sku_name
+  os_type             = each.value.os_type
   worker_count        = each.value.worker_count
   tags                = var.tags
 }
@@ -26,7 +27,7 @@ module "app_service" {
   name                = each.value.name
   location            = module.resource_group[each.value.resource_group_key].location
   resource_group_name = module.resource_group[each.value.resource_group_key].name
-  service_plan_id     = module.app_service_plan[each.value.app_service_plan_key].id
+  app_service_plan_id = module.app_service_plan[each.value.app_service_plan_key].id
   ip_restrictions     = var.ip_restrictions
   tags                = var.tags
 }
