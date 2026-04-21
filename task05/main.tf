@@ -30,3 +30,19 @@ module "app_service" {
   ip_restrictions     = var.ip_restrictions
   tags                = var.tags
 }
+
+module "traffic_manager" {
+  source = "./modules/traffic_manager"
+
+  name                   = var.traffic_manager_name
+  resource_group_name    = module.resource_group["rg3"].name
+  traffic_routing_method = var.traffic_manager_routing_method
+  tags                   = var.tags
+
+  endpoints = {
+    for key, app in var.app_services : key => {
+      name               = module.app_service[key].name
+      target_resource_id = module.app_service[key].id
+    }
+  }
+}

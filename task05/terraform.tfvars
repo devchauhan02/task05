@@ -61,6 +61,20 @@ ip_restrictions = [
   }
 ]
 
+traffic_manager_name           = "cmaz-49e4rswo-mod5-traf"
+traffic_manager_routing_method = "Performance"
+
+endpoints = {
+  "app1" = {
+    name               = "cmaz-49e4rswo-mod5-app-01"
+    target_resource_id = module.app_service["app1"].id
+  }
+  "app2" = {
+    name               = "cmaz-49e4rswo-mod5-app-02"
+    target_resource_id = module.app_service["app2"].id
+  }
+}
+
 tags = {
   Creator = "devashish_chauhan@epam.com"
 }

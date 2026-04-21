@@ -45,3 +45,23 @@ variable "app_services" {
     app_service_plan_key = string
   }))
 }
+
+variable "traffic_manager_name" {
+  description = "The name of the Traffic Manager profile."
+  type        = string
+}
+
+variable "traffic_manager_routing_method" {
+  description = "The routing method for the Traffic Manager profile."
+  type        = string
+}
+
+variable "endpoints" {
+  description = "A map of Azure endpoints to add to the Traffic Manager profile."
+  type = map(object({
+    name               = string
+    target_resource_id = string
+    weight             = optional(number, 1)
+  }))
+  default = {}
+}
